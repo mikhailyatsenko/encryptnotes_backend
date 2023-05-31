@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "ibmcabhn",
+    "password": "4zpQOVvKSEDWBqgC49082LovkfI0lRfb",
+    "database": "ibmcabhn",
+    "host": "mouse.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "ibmcabhn",
+    "password": "4zpQOVvKSEDWBqgC49082LovkfI0lRfb",
+    "database": "ibmcabhn",
+    "host": "mouse.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "ibmcabhn",
+    "password": "4zpQOVvKSEDWBqgC49082LovkfI0lRfb",
+    "database": "ibmcabhn",
+    "host": "mouse.db.elephantsql.com",
+    "dialect": "postgres"
+  }
+}
