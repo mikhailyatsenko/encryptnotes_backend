@@ -3,7 +3,7 @@ const db = require("./db");
 const app = express();
 const randomstring = require("randomstring");
 
-const port = 3500;
+const port = 80;
 
 app.use(express.json());
 
@@ -20,10 +20,12 @@ app.post("/create", (req, res) => {
       throw err;
     }
     console.log("res", res);
-    // db.end();
+    responseCipher();
   });
 
-  res.send(JSON.stringify({ result: true, cipher: cipher }));
+  function responseCipher() {
+    res.send(JSON.stringify({ result: true, cipher: cipher }));
+  }
 });
 
 app.post("/getnote", async (req, res) => {
