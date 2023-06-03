@@ -8,6 +8,7 @@ const port = 3002;
 app.use(express.json());
 
 app.post("/create", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   const cipher = randomstring.generate({
     length: 24,
     capitalization: "lowercase",
@@ -29,6 +30,7 @@ app.post("/create", (req, res) => {
 });
 
 app.post("/getnote", async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const cipher = req.body.cipher.trim();
 
