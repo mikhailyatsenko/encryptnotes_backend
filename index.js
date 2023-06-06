@@ -16,8 +16,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.post("/create", (req, res) => {
-  res.set("Access-Control-Allow-Origin", "*");
-  res.set("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   const cipher = randomstring.generate({
     length: 24,
     capitalization: "lowercase",
@@ -39,8 +39,8 @@ app.post("/create", (req, res) => {
 });
 
 app.post("/getnote", async (req, res) => {
-  res.set("Access-Control-Allow-Origin", "*");
-  res.set("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   try {
     const cipher = req.body.cipher.trim();
 
