@@ -1,20 +1,22 @@
 const express = require("express");
-// const cors = require("cors");
+const cors = require("cors");
 const db = require("./db");
 const app = express();
 const randomstring = require("randomstring");
 
 const port = 3501;
 
-// app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 app.post("/create", (req, res) => {
-  res.setHeader("Access-Control-Allow-Methods", "POST");
-  res.setHeader("Access-Control-Allow-Headers", "Content-type");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/create");
-
+  // res.setHeader("Access-Control-Allow-Origin", "*");
   const cipher = randomstring.generate({
     length: 24,
     capitalization: "lowercase",
@@ -36,9 +38,7 @@ app.post("/create", (req, res) => {
 });
 
 app.post("/getnote", async (req, res) => {
-  res.setHeader("Access-Control-Allow-Methods", "POST");
-  res.setHeader("Access-Control-Allow-Headers", "Content-type");
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  // res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const cipher = req.body.cipher.trim();
 
