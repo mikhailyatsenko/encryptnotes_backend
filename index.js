@@ -13,6 +13,7 @@ app.post("/create", (req, res) => {
   res.setHeader("Access-Control-Allow-Methods", "POST");
   res.setHeader("Access-Control-Allow-Headers", "Content-type");
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/create");
 
   const cipher = randomstring.generate({
     length: 24,
