@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const db = require("./db");
 const app = express();
 const randomstring = require("randomstring");
 
 const port = 3501;
 
+app.use(cors());
 app.use(express.json());
 
 app.post("/create", (req, res) => {
