@@ -3,7 +3,7 @@ const db = require("./db");
 const app = express();
 const randomstring = require("randomstring");
 
-const port = 3002;
+const port = 443;
 
 app.use(express.json());
 
