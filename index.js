@@ -6,14 +6,14 @@ const randomstring = require("randomstring");
 
 const port = 3501;
 
-// const corsOptions = {
-//   origin: "http://localhost:3000",
-//   credentials: true, //access-control-allow-credentials:true
-//   optionSuccessStatus: 200,
-// };
-// app.use(cors(corsOptions));
+const corsOptions = {
+  origin: "http://encryptnotes.atwebpages.com",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
-// app.use(express.json());
+app.use(express.json());
 
 app.post("/create", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
