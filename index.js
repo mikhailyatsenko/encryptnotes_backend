@@ -1,23 +1,19 @@
 const express = require("express");
-// const cors = require("cors");
+const cors = require("cors");
 const db = require("./db");
 const app = express();
 const randomstring = require("randomstring");
 
 const port = 3501;
 
-// const corsOptions = {
-//   origin: "http://encryptnotes.atwebpages.com",
-//   credentials: true, //access-control-allow-credentials:true
-//   optionSuccessStatus: 200,
-// };
-// app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.json());
 
 app.post("/create", (req, res) => {
-  res.set("Access-Control-Allow-Origin", "*");
-  res.set("Access-Control-Allow-Headers", "Content-Type");
+  // res.set("Access-Control-Allow-Headers", "Content-Type");
+  // res.setHeader("Access-Control-Allow-Origin", "*");
+
   const cipher = randomstring.generate({
     length: 24,
     capitalization: "lowercase",
@@ -39,8 +35,8 @@ app.post("/create", (req, res) => {
 });
 
 app.post("/getnote", async (req, res) => {
-  res.set("Access-Control-Allow-Origin", "*");
-  res.set("Access-Control-Allow-Headers", "Content-Type");
+  // res.set("Access-Control-Allow-Origin", "*");
+  // res.set("Access-Control-Allow-Headers", "Content-Type");
   try {
     const cipher = req.body.cipher.trim();
 
@@ -59,5 +55,5 @@ app.post("/getnote", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
