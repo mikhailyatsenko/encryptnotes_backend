@@ -1,17 +1,17 @@
 const express = require("express");
-const cors = require("cors");
+// const cors = require("cors");
 const db = require("./db");
 const app = express();
 const randomstring = require("randomstring");
 
 const port = 3501;
 
-const corsOptions = {
-  origin: "http://encryptnotes.atwebpages.com",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: "http://encryptnotes.atwebpages.com",
+//   credentials: true, //access-control-allow-credentials:true
+//   optionSuccessStatus: 200,
+// };
+// app.use(cors(corsOptions));
 
 app.use(express.json());
 
