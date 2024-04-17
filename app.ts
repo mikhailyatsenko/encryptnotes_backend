@@ -24,13 +24,13 @@ app.post("/create", async (req: Request, res: Response) => {
     );
 
     const responseCipher = () => {
-      res.json({ result: true, cipher });
+      res.json({ result: "ok", cipher });
     };
 
     responseCipher();
   } catch (err) {
     console.error(err);
-    res.status(500).json({ result: false, error: (err as Error).message });
+    res.status(500).json({ result: "error", cipher: (err as Error).message });
   }
 });
 
@@ -42,16 +42,16 @@ app.post("/getnote", async (req: Request, res: Response) => {
       `SELECT encrypted_note FROM notes WHERE cipher = $1`,
       [cipher]
     );
-
+ 
     if (rows.length) {
       const note: string = rows[0].encrypted_note;
-      res.json({ result: true, note });
+      res.json({ result: "ok", note });
     } else {
-      res.json({ result: false, note: "Note not found" });
+      res.json({ result: "404", note: "Note not found" });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ result: false, error: (error as Error).message });
+    res.status(500).json({ result: "error", note: (error as Error).message });
   }
 });
 
