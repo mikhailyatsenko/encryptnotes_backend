@@ -29,13 +29,13 @@ app.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const timestamp = Math.floor(Date.now() / 1000);
         const { rows } = yield db_1.default.query(`INSERT INTO notes (cipher, encrypted_note, created_on, timestamp_user) values($1, $2, NOW(), $3) RETURNING *`, [cipher, req.body.note, timestamp]);
         const responseCipher = () => {
-            res.json({ result: true, cipher });
+            res.json({ result: "ok", cipher });
         };
         responseCipher();
     }
     catch (err) {
         console.error(err);
-        res.status(500).json({ result: false, error: err.message });
+        res.status(500).json({ result: "error", cipher: err.message });
     }
 }));
 app.post("/getnote", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -44,15 +44,15 @@ app.post("/getnote", (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const { rows } = yield db_1.default.query(`SELECT encrypted_note FROM notes WHERE cipher = $1`, [cipher]);
         if (rows.length) {
             const note = rows[0].encrypted_note;
-            res.json({ result: true, note });
+            res.json({ result: "ok", note });
         }
         else {
-            res.json({ result: false, note: "Note not found" });
+            res.json({ result: "404", note: "Note not found" });
         }
     }
     catch (error) {
         console.error(error);
-        res.status(500).json({ result: false, error: error.message });
+        res.status(500).json({ result: "error", note: error.message });
     }
 }));
 app.listen(port, () => {
