@@ -2,8 +2,9 @@
 
 This is a backend for short message encryption service. Based on React, Node.js, Express.js + PostgreSQl
 
-How it works: [http://encryptnotes.atwebpages.com/](https://mikhailyatsenko.github.io/encryptnotes/)
+How it works: [https://mikhailyatsenko.github.io/encryptnotes/](https://mikhailyatsenko.github.io/encryptnotes/)
 
 Frontend: https://github.com/mikhailyatsenko/encryptnotes
 
-![image](https://github.com/mikhailyatsenko/encryptnotes/blob/master/encryptnotes.gif)
+## How It Works
+<img src="https://raw.githubusercontent.com/mikhailyatsenko/mikhailyatsenko/main/img/encrypt.gif" alt="bvg-gif" width="600"/>
