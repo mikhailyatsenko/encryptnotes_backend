@@ -1,6 +1,13 @@
 # Short notes encryption service.
 
-This is a backend for short message encryption service. Based on React, Node.js, Express.js + PostgreSQl
+This is a backend for short message encryption service. 
+
+
+## Technologies Used
+- Node
+- xpress.js
+- TypeScript
+- PostgreSQl
 
 How it works: [https://mikhailyatsenko.github.io/encryptnotes/](https://mikhailyatsenko.github.io/encryptnotes/)
 
