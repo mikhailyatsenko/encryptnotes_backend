@@ -5,7 +5,7 @@ This is a backend for short message encryption service.
 
 ## Technologies Used
 - Node
-- xpress.js
+- Express.js
 - TypeScript
 - PostgreSQl
 
