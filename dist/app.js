@@ -21,27 +21,29 @@ const port = 3501;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const client = yield db_1.default.connect();
     try {
         const cipher = randomstring_1.default.generate({
             length: 24,
             capitalization: "lowercase",
         });
         const timestamp = Math.floor(Date.now() / 1000);
-        const { rows } = yield db_1.default.query(`INSERT INTO notes (cipher, encrypted_note, created_on, timestamp_user) values($1, $2, NOW(), $3) RETURNING *`, [cipher, req.body.note, timestamp]);
-        const responseCipher = () => {
-            res.json({ result: "ok", cipher });
-        };
-        responseCipher();
+        const { rows } = yield client.query(`INSERT INTO notes (cipher, encrypted_note, created_on, timestamp_user) values($1, $2, NOW(), $3) RETURNING *`, [cipher, req.body.note, timestamp]);
+        res.json({ result: "ok", cipher });
     }
     catch (err) {
         console.error(err);
         res.status(500).json({ result: "error", cipher: err.message });
     }
+    finally {
+        client.release(); // Ensure the client is released back to the pool
+    }
 }));
 app.post("/getnote", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const client = yield db_1.default.connect();
     try {
         const cipher = req.body.cipher.trim();
-        const { rows } = yield db_1.default.query(`SELECT encrypted_note FROM notes WHERE cipher = $1`, [cipher]);
+        const { rows } = yield client.query(`SELECT encrypted_note FROM notes WHERE cipher = $1`, [cipher]);
         if (rows.length) {
             const note = rows[0].encrypted_note;
             res.json({ result: "ok", note });
@@ -53,6 +55,9 @@ app.post("/getnote", (req, res) => __awaiter(void 0, void 0, void 0, function* (
     catch (error) {
         console.error(error);
         res.status(500).json({ result: "error", note: error.message });
+    }
+    finally {
+        client.release(); // Ensure the client is released back to the pool
     }
 }));
 app.listen(port, () => {
